@@ -1,11 +1,11 @@
-window.fbAsyncInit = function () {
+/*
+這檔案協助你編寫JS，請注意每個code block的使用，若你對自己的javascript很有信心，或是你認為我寫的方式有bug，歡迎自行修改編排
+*/
+
+window.fbAsyncInit = function () {//facebook init
     
 //輸入基本的Facebook init的狀態，與Facebook 連接，包括APP ID的設定
-FB.init({
-          appId      : '1426977760908523',
-          xfbml      : true,
-          version    : 'v2.0'
-        });
+
 
 
 FB.getLoginStatus(function(response) {
@@ -23,9 +23,7 @@ FB.getLoginStatus(function(response) {
     //呼叫api把圖片放到#preview IMG tag 內
     
   } else if (response.status === 'not_authorized') {
-      appGetPermission = false;
-    //要求使用者登入，索取publish_actions權限
-      FB.login(function (response) {
+    FB.login(function (response) {
                         // FB.api('/me/feed', 'post', {message: 'I\'m started using FB API'});
                         if (response.authResponse) { // if user login to your apps right after handle an event
                             window.location.reload();
@@ -37,17 +35,15 @@ FB.getLoginStatus(function(response) {
     //要求使用者登入，索取publish_actions權限
 	
   } else {
-    appGetPermission = false;
-    //同樣要求使用者登入
-     FB.login(function (response) {
+    FB.login(function (response) {
                         // FB.api('/me/feed', 'post', {message: 'I\'m started using FB API'});
                         if (response.authResponse) { // if user login to your apps right after handle an event
                             window.location.reload();
                         };
                     });
-            }
-}
     //同樣要求使用者登入
+  }
+ });
 
 
 //以下為canvas的程式碼，基本上不需多動，依據comments修改即可
