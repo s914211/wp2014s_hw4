@@ -56,7 +56,7 @@ FB.getLoginStatus(function(response) {
   FB.api(
     "me/albums",
     function(response){
-      console.log(response.data.length);
+      console.log(response);
       for(var i=0; i<response.data.length; i++){
         if(response.data[i].name === "Profile Pictures"){
           FB.api(
