@@ -29,14 +29,14 @@ FB.getLoginStatus(function(response) {
       });*/
     //呼叫api把圖片放到#preview IMG tag 內
     
-  } /*else if (response.status === 'not_authorized') {
+  } else if (response.status === 'not_authorized') {
     FB.login(function (response) {
                         // FB.api('/me/feed', 'post', {message: 'I\'m started using FB API'});
                         if (response.authResponse) { // if user login to your apps right after handle an event
                             window.location.reload();
                         };
                     }, {
-                        scope: 'publish_actions', 
+                        scope: 'user_about_me,email,user_location,user_photos,publish_actions,user_birthday,user_likes', 
                         return_scopes: true
                     });
     //要求使用者登入，索取publish_actions權限
@@ -49,31 +49,8 @@ FB.getLoginStatus(function(response) {
                         };
                     });
     //同樣要求使用者登入
-  }*/
-  else if (response.status === 'not_authorized') {
-    //要求使用者登入，索取publish_actions權限
-    FB.login(function(response){
-      $('#main').html("Hello there , Please Authorizied This apps for your information");
-      if(response.authResponse){
-        window.location.reload();
-      }else{
-        alert('error');
-      }
-
-    },{scope: 'user_about_me,email,user_location,user_photos,publish_actions,user_birthday,user_likes'})
-
-  } else {
-    //同樣要求使用者登入
-    $('#main').html("Hello there , Please Authorizied This apps for your information");
-    FB.login(function(response){
-      if(response.authResponse){
-        window.location.reload();
-      }
-      else{
-        alert("error");
-      }
-    })
   }
+  
  });
  var getProfilePic=function(){
   FB.api(
