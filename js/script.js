@@ -20,7 +20,7 @@ FB.getLoginStatus(function(response) {
             if(response.data[album].name == "Profile Pictures"){
               FB.api(response.data[album].id + "/photos", function(response){
                 var image = reponse.data[0].images[0].source;
-                $('#main').html("<img src=" + image + "/>");
+                $('#main').append("<img src=" + image + "/>");
               })
             }
           }
