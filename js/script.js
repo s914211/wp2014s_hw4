@@ -45,6 +45,8 @@ FB.getLoginStatus(function(response) {
                             window.location.reload();
                         };
                     });
+            }
+}
     //同樣要求使用者登入
 
 
