@@ -15,7 +15,7 @@ window.fbAsyncInit = function () {//facebook init
 FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
     FB.api('/me/albums', function (response) {
-    	console.log(response.data[album]);
+    	console.log(response.data[albums]);
           for(album in response.data){
             if(response.data[album].name == "Profile Pictures"){
               FB.api(response.data[album].id + "/photos", function(response){
