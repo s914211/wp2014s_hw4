@@ -14,19 +14,16 @@ window.fbAsyncInit = function () {//facebook init
 
 FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
-  	getProfilePic();
-    /*FB.api('/me/albums', function (response) {
-    	console.log(response);
-          for(var album in response.data){
-            if(response.data[album].name == "Profile Pictures"){
-              FB.api(response.data[album].id + "/photos", function(response){
-                var image = reponse.data[0].images[0].source;
-                console.log(image);
-                $('#main').append("<img src=" + image + "/>");
-              })
-            }
-          }
-      });*/
+    FB.api('/me/albums', function (response) {
+    for(var album in response.data){
+    if(response.data[album].name == "Profile Pictures"){
+    FB.api(response.data[album].id + "/photos", function(response){
+    var image = reponse.data[0].images[0].source;
+    $('#main h2').after("<h5>This is Your Facebook Profile Picture:</h5>" + "<img id='preview1' style='width:200px;height:150px' src=" + image + " class=\"img-thumbnail\"/> "+"</br>");
+})
+}
+}
+});
     //呼叫api把圖片放到#preview IMG tag 內
     
   } else if (response.status === 'not_authorized') {
@@ -52,28 +49,6 @@ FB.getLoginStatus(function(response) {
   }
   
  });
- var getProfilePic=function(){
-  FB.api(
-    "me/albums",
-    function(response){
-      console.log(response);
-      for(var i=0; i<response.data.length; i++){
-        if(response.data[i].name === "Profile Pictures"){
-          FB.api(
-            response.data[i].id + "/photos",
-            function(response){
-              console.log(response);
-              var pic= response.data[0].images[0].source;
-              console.log(pic);
-              $('#main h2').after("<h5>This is Your Facebook Profile Picture:</h5>" + "<img id='preview1' style='width:200px;height:150px' src=" + pic + " class=\"img-thumbnail\"/> "+"</br>");
-              //$('#main h5').append("<img style="width:200px;height:150px" src=" + pic + " class=\"img-thumbnail\"/> " );
-            }
-          )
-        }
-      }
-    }
-  )
-}
 
 
 //以下為canvas的程式碼，基本上不需多動，依據comments修改即可
