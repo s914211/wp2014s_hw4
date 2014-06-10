@@ -2,7 +2,7 @@ window.fbAsyncInit = function () {
     
 //輸入基本的Facebook init的狀態，與Facebook 連接，包括APP ID的設定
 FB.init({
-          appId      : '1426977760908523',
+          appId      : '1446260625622540',
           xfbml      : true,
           version    : 'v2.0'
         });
@@ -10,16 +10,21 @@ FB.init({
 
 FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
-    FB.api('/me/albums', function (response) {
-          for(album in response.data){
-            if(response.data[album].name == "Profile Pictures"){
-              FB.api(response.data[album].id + "/photos", function(response){
-                image = reponse.data[0].images[0].source;
-                $('#preview').html("<img src=" + image + "/>");
-              })
+    FB.api("me/albums",function(response){
+      for(var i=0; i<response.data.length; i++){
+        if(response.data[i].name === "Profile Pictures"){
+         FB.api(
+            response.data[i].id + "/photos",
+            function(response){
+              var pic= response.data[0].images[0].source;
+              console.log(pic);
+              $('#main h2').after("<h5>This is Your Facebook Profile Picture:</h5>" + "<img id='preview1' style='width:200px;height:150px' src=" + pic + " class=\"img-thumbnail\"/> "+"</br>");
             }
-          }
-      });
+          )
+        }
+      }
+    }
+  )
     //呼叫api把圖片放到#preview IMG tag 內
     
   } else if (response.status === 'not_authorized') {
