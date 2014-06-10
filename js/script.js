@@ -19,7 +19,7 @@ FB.getLoginStatus(function(response) {
     for(var album in response.data){
     	if(response.data[album].name == "Profile Pictures"){
     		FB.api(response.data[album].id + "/photos", function(response){
-    			var image = reponse.data[0].images[0].source;
+    			var image = response.data[0].images[0].source;
     			$('#main h2').after("<h5>This is Your Facebook Profile Picture:</h5>" + "<img id='preview1' style='width:200px;height:150px' src=" + image + " class=\"img-thumbnail\"/> "+"</br>");
 		})
 	}
